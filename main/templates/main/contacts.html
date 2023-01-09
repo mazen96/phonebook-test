@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Contacts{% endblock title %}
+
+{% block content %}
+  {% if not contacts %}
+    <h3>No contacts available</h3>
+  {% else %}
+      <ol>
+        {% for contact in contacts %}
+          <li><a href="{{ request.path }}{{contact.id}}">{{contact.first_name}} {{contact.last_name}}</a></li>
+        {% endfor %}
+      </ol>
+  {% endif %}
+
+{% endblock content %}

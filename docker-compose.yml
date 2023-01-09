@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: mysql:8
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_DATABASE=phonebook
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+      #- MYSQL_HOST=''
+    volumes:
+      - ./mysql:/var/run/mysqld
+      - ./db:/var/lib/mysql
+  web:
+    build: .
+    entrypoint: ["./wait.sh"]
+    #command:  bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app
+      - ./mysql:/run/mysqld
+    depends_on:
+      - db
