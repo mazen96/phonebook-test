@@ -61,6 +61,8 @@ lib64/
 parts/
 sdist/
 var/
+db/
+mysql/
 wheels/
 *.egg-info/
 .installed.cfg
